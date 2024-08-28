@@ -5,12 +5,31 @@ let sectionVacio = document.getElementById("resultado-vacio");
 sectionResultado.style.display = "none";
 
 const encriptarTexto = () => {
-  const textoEntrada = document
-    .getElementById("input-entrada")
-    .value.toLowerCase();
+  const textoEntrada = document.getElementById("input-entrada").value;
+
+  if (/[A-Z]/.test(textoEntrada)) {
+    alert("El texto debe estar en minúsculas.");
+    return;
+  }
+
+  if (/[^a-z\s]/.test(textoEntrada)) {
+    alert("El texto contiene caracteres especiales no permitidos.");
+    return;
+  }
 
   if (textoEntrada === "") {
     alert("No se puede encriptar un texto vacío");
+    return;
+  }
+
+  if (
+    textoEntrada.includes("enter") ||
+    textoEntrada.includes("imes") ||
+    textoEntrada.includes("ai") ||
+    textoEntrada.includes("ober") ||
+    textoEntrada.includes("ufat")
+  ) {
+    alert("El texto ya está encriptado");
     return;
   }
 
